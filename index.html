@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BSS Central Monitoring Portal</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+    body { background-color: #0d1117; color: #c9d1d9; height: 100vh; overflow: hidden; }
+
+    /* Header Navbar */
+    header {
+      background-color: #161b22;
+      padding: 12px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #30363d;
+    }
+    .brand-title { font-size: 18px; font-weight: bold; color: #f0f6fc; display: flex; align-items: center; gap: 10px; }
+    .back-btn {
+      display: none;
+      background: #238636;
+      color: white;
+      border: none;
+      padding: 6px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    .back-btn:hover { background: #2ea043; }
+
+    /* Container untuk Grid Kartu */
+    .portal-home {
+      padding: 40px;
+      height: calc(100vh - 60px);
+      overflow-y: auto;
+    }
+    .portal-title { margin-bottom: 8px; color: #f0f6fc; }
+    .portal-subtitle { color: #8b949e; margin-bottom: 30px; }
+
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+    }
+    
+    .card {
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 8px;
+      padding: 20px;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+    .card:hover {
+      border-color: #58a6ff;
+      transform: translateY(-3px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+    .card h3 { color: #58a6ff; margin-bottom: 10px; }
+    .card p { color: #8b949e; font-size: 14px; line-height: 1.4; margin-bottom: 15px; }
+    .card .badge {
+      display: inline-block;
+      padding: 4px 8px;
+      background: #21262d;
+      color: #7ee787;
+      font-size: 12px;
+      border-radius: 4px;
+      font-weight: bold;
+    }
+
+    /* Container untuk Frame Dashboard */
+    .iframe-wrapper {
+      width: 100%;
+      height: calc(100vh - 60px);
+      display: none;
+    }
+    iframe { width: 100%; height: 100%; border: none; }
+  </style>
+</head>
+<body>
+
+  <!-- Header Section -->
+  <header>
+    <div class="brand-title">
+      <button id="btn-back" class="back-btn" onclick="showPortalHome()">← Kembali ke Portal Utama</button>
+      <span id="page-title">BSS CENTRAL MONITORING PORTAL</span>
+    </div>
+  </header>
+
+  <!-- Halaman Utam / Landing Grid -->
+  <div id="portal-home" class="portal-home">
+    <h2 class="portal-title">Daftar Dashboard Monitoring</h2>
+    <p class="portal-subtitle">Pilih dashboard di bawah ini untuk melihat detail monitoring secara real-time.</p>
+
+    <div class="grid-container">
+      
+      <!-- Card 1 -->
+      <div class="card" onclick="openDashboard('https://mawardi-uc.github.io/BSS-Monitoring-Undercarriage/', 'BSS UCR Monitoring')">
+        <h3>BSS UCR Monitoring</h3>
+        <p>Program Pemeriksaan Undercarriage (PPU), PPU Achievement, dan Alarm Worn Up 80%.</p>
+        <span class="badge">● Active</span>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="card" onclick="openDashboard('https://mawardi-uc.github.io/Monitoring-Clearance-Swing-Circle-BSS/', 'BSS Clearance Swing Circle')">
+        <h3>BSS Swing Circle</h3>
+        <p>Pengukuran & Lifetime Swing Circle, Kehausan 4 Titik Ukur, dan Status Condition.</p>
+        <span class="badge">● Active</span>
+      </div>
+
+      <!-- Card 3 (Contoh jika menambah dashboard baru nanti) -->
+      <div class="card" onclick="openDashboard('URL_DASHBOARD_3_KAMU', 'Dashboard Engine Monitoring')">
+        <h3>Engine Monitoring</h3>
+        <p>Monitoring kondisi engine, oil pressure, dan temperatur per unit.</p>
+        <span class="badge" style="color: #e3b341;">● Coming Soon</span>
+      </div>
+
+      <!-- Card 4 (Contoh jika menambah dashboard baru nanti) -->
+      <div class="card" onclick="openDashboard('URL_DASHBOARD_4_KAMU', 'Dashboard Hydraulic System')">
+        <h3>Hydraulic System</h3>
+        <p>Pemantauan tekanan hidrolik dan analisis kontaminasi oli.</p>
+        <span class="badge" style="color: #e3b341;">● Coming Soon</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Frame Tempat Menampilkan Dashboard -->
+  <div id="iframe-wrapper" class="iframe-wrapper">
+    <iframe id="main-frame" src=""></iframe>
+  </div>
+
+  <script>
+    function openDashboard(url, title) {
+      document.getElementById('main-frame').src = url;
+      document.getElementById('portal-home').style.display = 'none';
+      document.getElementById('iframe-wrapper').style.display = 'block';
+      document.getElementById('btn-back').style.display = 'inline-block';
+      document.getElementById('page-title').innerText = title;
+    }
+
+    function showPortalHome() {
+      document.getElementById('main-frame').src = '';
+      document.getElementById('iframe-wrapper').style.display = 'none';
+      document.getElementById('portal-home').style.display = 'block';
+      document.getElementById('btn-back').style.display = 'none';
+      document.getElementById('page-title').innerText = 'BSS CENTRAL MONITORING PORTAL';
+    }
+  </script>
+
+</body>
+</html>
