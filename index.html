@@ -7,7 +7,6 @@
   <style>
     * { 
       box-sizing: border-box; 
-      position: center;
       margin: 0; 
       padding: 0; 
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
@@ -26,17 +25,18 @@
       overflow: hidden; 
     }
 
-    /* Header Navbar Semi-Transparan */
+    /* Header Navbar Semi-Transparan dengan Judul Tepat di Tengah */
     header {
       background-color: rgba(22, 27, 34, 0.6) !important;
       backdrop-filter: blur(4px);
       padding: 12px 24px;
       display: flex;
-      justify-content: space-between;
+      justify-content: center; /* Memaksa isi header di tengah-tengah secara horizontal */
       align-items: center;
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      position: relative;
+      position: relative; /* Penting untuk acuan tombol absolute */
       z-index: 10;
+      min-height: 50px;
     }
 
     .brand-title { 
@@ -45,11 +45,16 @@
       color: #f0f6fc; 
       display: flex; 
       align-items: center; 
-      gap: 10px; 
+      justify-content: center;
+      text-align: center;
+      letter-spacing: 0.5px;
     }
 
+    /* Tombol Kembali Ditarik ke Ujung Kiri Tanpa Mengganggu Posisi Judul di Tengah */
     .back-btn {
       display: none;
+      position: absolute; /* Mengunci posisi tombol di sebelah kiri */
+      left: 24px;
       background: #238636;
       color: white;
       border: none;
@@ -57,10 +62,11 @@
       border-radius: 6px;
       cursor: pointer;
       font-weight: 600;
+      z-index: 20;
     }
     .back-btn:hover { background: #2ea043; }
 
-    /* Container Portal Utama: Dibuat FLEXBOX untuk menengahkan menu (Atas-Bawah & Kiri-Kanan) */
+    /* Container Portal Utama (Flexbox untuk menengahkan menu) */
     .portal-home {
       background: transparent !important;
       height: calc(100vh - 50px);
@@ -68,8 +74,8 @@
       
       display: flex;
       flex-direction: column;
-      justify-content: center; /* Menengahkan Posisi Vertikal */
-      align-items: center;     /* Menengahkan Posisi Horizontal */
+      justify-content: center; 
+      align-items: center;     
       
       padding: 20px;
       box-sizing: border-box;
@@ -99,11 +105,11 @@
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); 
       gap: 20px;
       width: 100%;
-      max-width: 1150px; /* Batas lebar menu agar rapi di tengah */
+      max-width: 1150px;
       justify-content: center;
     }
 
-    /* Kartu Dashboard dengan Efek Glassmorphism (Kaca Transparan) */
+    /* Kartu Dashboard Glassmorphism */
     .card {
       background: rgba(22, 27, 34, 0.75) !important;
       backdrop-filter: blur(8px);
@@ -147,8 +153,8 @@
 
   <!-- Header Section -->
   <header>
+    <button id="btn-back" class="back-btn" onclick="showPortalHome()">← Kembali ke Portal Utama</button>
     <div class="brand-title">
-      <button id="btn-back" class="back-btn" onclick="showPortalHome()">← Kembali ke Portal Utama</button>
       <span id="page-title">BSS CENTRAL MONITORING PORTAL</span>
     </div>
   </header>
@@ -208,7 +214,6 @@
     function showPortalHome() {
       document.getElementById('main-frame').src = '';
       document.getElementById('iframe-wrapper').style.display = 'none';
-      /* Mengembalikan display ke flex agar tetap presisi di tengah */
       document.getElementById('portal-home').style.display = 'flex'; 
       document.getElementById('btn-back').style.display = 'none';
       document.getElementById('page-title').innerText = 'BSS CENTRAL MONITORING PORTAL';
