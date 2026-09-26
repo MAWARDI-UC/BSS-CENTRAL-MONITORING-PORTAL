@@ -5,131 +5,48 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BSS Central Monitoring Portal</title>
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-    body {box-sizing: border-box; 
-  margin: 0; 
-  padding: 0; 
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-}
+    * { 
+      box-sizing: border-box; 
+      margin: 0; 
+      padding: 0; 
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+    }
 
-body { 
-  /* Gambar dipasang penuh di body */
-  background-image: linear-gradient(rgba(13, 17, 23, 0.25), rgba(13, 17, 23, 0.25)), 
-                    url('background%20dasboard.png');
-  background-size: 100% 100%; 
-  background-position: top center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  color: #c9d1d9; 
-  height: 100vh; 
-  overflow: hidden; 
-}
+    body { 
+      /* Gambar dipasang penuh di body tanpa terpotong */
+      background-image: linear-gradient(rgba(13, 17, 23, 0.35), rgba(13, 17, 23, 0.25)), 
+                        url('background%20dasboard.png');
+      background-size: 100% 100%; 
+      background-position: top center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      color: #c9d1d9; 
+      height: 100vh; 
+      overflow: hidden; 
+    }
 
-/* Header dibuat transparan / gelap tipis agar logo di atas gambar tidak tertutup */
-header {
-  background-color: rgba(22, 27, 34, 0.6) !important; /* Dibuat semi-transparan */
-  backdrop-filter: blur(4px); /* Efek blur halus di belakang header */
-  padding: 12px 24px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  position: relative;
-  z-index: 10;
-}
-
-.brand-title { 
-  font-size: 18px; 
-  font-weight: bold; 
-  color: #f0f6fc; 
-  display: flex; 
-  align-items: center; 
-  gap: 10px; 
-}
-
-.back-btn {
-  display: none;
-  background: #238636;
-  color: white;
-  border: none;
-  padding: 6px 14px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: 600;
-}
-.back-btn:hover { background: #2ea043; }
-
-/* Container Portal Transparan */
-.portal-home {
-  background: transparent !important;
-  padding: 20px 40px 40px 40px;
-  height: calc(100vh - 50px);
-  overflow-y: auto;
-}
-
-.portal-title { margin-bottom: 8px; color: #f0f6fc; text-shadow: 0 2px 4px rgba(0,0,0,0.8); }
-.portal-subtitle { color: #d0d7de; margin-bottom: 25px; text-shadow: 0 1px 3px rgba(0,0,0,0.8); }
-
-.grid-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 20px;
-}
-
-/* Kartu Dashboard dengan efek Glassmorphism (Kaca Transparan) */
-.card {
-  background: rgba(22, 27, 34, 0.75) !important; /* Transparan elegan */
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 8px;
-  padding: 20px;
-  transition: all 0.2s ease;
-  cursor: pointer;
-}
-.card:hover {
-  border-color: #58a6ff;
-  transform: translateY(-3px);
-  box-shadow: 0 6px 16px rgba(0,0,0,0.5);
-  background: rgba(22, 27, 34, 0.88) !important;
-}
-.card h3 { color: #58a6ff; margin-bottom: 10px; }
-.card p { color: #c9d1d9; font-size: 14px; line-height: 1.4; margin-bottom: 15px; }
-.card .badge {
-  display: inline-block;
-  padding: 4px 8px;
-  background: rgba(33, 38, 45, 0.8);
-  color: #7ee787;
-  font-size: 12px;
-  border-radius: 4px;
-  font-weight: bold;
-}
-
-/* Container iFrame ketika Dashboard Dibuka */
-.iframe-wrapper {
-  width: 100%;
-  height: calc(100vh - 50px);
-  display: none;
-  background: #0d1117;
-}
-iframe { width: 100%; height: 100%; border: none; }
-
-/* Pastikan container portal transparan agar background body terlihat penuh */
-.portal-home {
-  background: transparent !important;
-  padding: 40px;
-  height: calc(100vh - 60px);
-  overflow-y: auto;
-}
-    /* Header Navbar */
+    /* Header Navbar Semi-Transparan */
     header {
-      background-color: #161b22;
+      background-color: rgba(22, 27, 34, 0.6) !important;
+      backdrop-filter: blur(4px);
       padding: 12px 24px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-bottom: 1px solid #30363d;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      position: relative;
+      z-index: 10;
     }
-    .brand-title { font-size: 18px; font-weight: bold; color: #f0f6fc; display: flex; align-items: center; gap: 10px; }
+
+    .brand-title { 
+      font-size: 18px; 
+      font-weight: bold; 
+      color: #f0f6fc; 
+      display: flex; 
+      align-items: center; 
+      gap: 10px; 
+    }
+
     .back-btn {
       display: none;
       background: #238636;
@@ -142,51 +59,85 @@ iframe { width: 100%; height: 100%; border: none; }
     }
     .back-btn:hover { background: #2ea043; }
 
-    /* Container untuk Grid Kartu */
+    /* Container Portal Utama: Dibuat FLEXBOX untuk menengahkan menu (Atas-Bawah & Kiri-Kanan) */
     .portal-home {
-      padding: 40px;
-      height: calc(100vh - 60px);
+      background: transparent !important;
+      height: calc(100vh - 50px);
+      width: 100%;
+      
+      display: flex;
+      flex-direction: column;
+      justify-content: center; /* Menengahkan Posisi Vertikal */
+      align-items: center;     /* Menengahkan Posisi Horizontal */
+      
+      padding: 20px;
+      box-sizing: border-box;
       overflow-y: auto;
     }
-    .portal-title { margin-bottom: 8px; color: #f0f6fc; }
-    .portal-subtitle { color: #8b949e; margin-bottom: 30px; }
 
-    .grid-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 20px;
+    /* Teks Judul & Subtitle dibuat Rata Tengah */
+    .portal-title, .portal-subtitle {
+      text-align: center;
+    }
+
+    .portal-title { 
+      margin-bottom: 8px; 
+      color: #f0f6fc; 
+      text-shadow: 0 2px 4px rgba(0,0,0,0.8); 
     }
     
+    .portal-subtitle { 
+      color: #d0d7de; 
+      margin-bottom: 30px; 
+      text-shadow: 0 1px 3px rgba(0,0,0,0.8); 
+    }
+
+    /* Grid Pembungkus Kartu Dashboard */
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); 
+      gap: 20px;
+      width: 100%;
+      max-width: 1150px; /* Batas lebar menu agar rapi di tengah */
+      justify-content: center;
+    }
+
+    /* Kartu Dashboard dengan Efek Glassmorphism (Kaca Transparan) */
     .card {
-      background: #161b22;
-      border: 1px solid #30363d;
+      background: rgba(22, 27, 34, 0.75) !important;
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
       border-radius: 8px;
       padding: 20px;
       transition: all 0.2s ease;
       cursor: pointer;
     }
+
     .card:hover {
       border-color: #58a6ff;
       transform: translateY(-3px);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.5);
+      background: rgba(22, 27, 34, 0.88) !important;
     }
+
     .card h3 { color: #58a6ff; margin-bottom: 10px; }
-    .card p { color: #8b949e; font-size: 14px; line-height: 1.4; margin-bottom: 15px; }
+    .card p { color: #c9d1d9; font-size: 14px; line-height: 1.4; margin-bottom: 15px; }
     .card .badge {
       display: inline-block;
       padding: 4px 8px;
-      background: #21262d;
+      background: rgba(33, 38, 45, 0.8);
       color: #7ee787;
       font-size: 12px;
       border-radius: 4px;
       font-weight: bold;
     }
 
-    /* Container untuk Frame Dashboard */
+    /* Container iFrame ketika Dashboard Dibuka */
     .iframe-wrapper {
       width: 100%;
-      height: calc(100vh - 60px);
+      height: calc(100vh - 50px);
       display: none;
+      background: #0d1117;
     }
     iframe { width: 100%; height: 100%; border: none; }
   </style>
@@ -201,7 +152,7 @@ iframe { width: 100%; height: 100%; border: none; }
     </div>
   </header>
 
-  <!-- Halaman Utam / Landing Grid -->
+  <!-- Halaman Utama / Landing Grid -->
   <div id="portal-home" class="portal-home">
     <h2 class="portal-title">Daftar Dashboard Monitoring</h2>
     <p class="portal-subtitle">Pilih dashboard di bawah ini untuk melihat detail monitoring secara real-time.</p>
@@ -222,14 +173,14 @@ iframe { width: 100%; height: 100%; border: none; }
         <span class="badge">● Active</span>
       </div>
 
-      <!-- Card 3 (Contoh jika menambah dashboard baru nanti) -->
+      <!-- Card 3 -->
       <div class="card" onclick="openDashboard('URL_DASHBOARD_3_KAMU', 'Dashboard Engine Monitoring')">
         <h3>Engine Monitoring</h3>
         <p>Monitoring kondisi engine, oil pressure, dan temperatur per unit.</p>
         <span class="badge" style="color: #e3b341;">● Coming Soon</span>
       </div>
 
-      <!-- Card 4 (Contoh jika menambah dashboard baru nanti) -->
+      <!-- Card 4 -->
       <div class="card" onclick="openDashboard('URL_DASHBOARD_4_KAMU', 'Dashboard Hydraulic System')">
         <h3>Hydraulic System</h3>
         <p>Pemantauan tekanan hidrolik dan analisis kontaminasi oli.</p>
@@ -256,7 +207,8 @@ iframe { width: 100%; height: 100%; border: none; }
     function showPortalHome() {
       document.getElementById('main-frame').src = '';
       document.getElementById('iframe-wrapper').style.display = 'none';
-      document.getElementById('portal-home').style.display = 'block';
+      /* Mengembalikan display ke flex agar tetap presisi di tengah */
+      document.getElementById('portal-home').style.display = 'flex'; 
       document.getElementById('btn-back').style.display = 'none';
       document.getElementById('page-title').innerText = 'BSS CENTRAL MONITORING PORTAL';
     }
