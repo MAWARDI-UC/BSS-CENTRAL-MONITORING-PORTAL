@@ -13,7 +13,7 @@
     }
 
     body { 
-      /* Gambar dipasang penuh di body tanpa terpotong */
+      /* Gambar dipasang penuh di body */
       background-image: linear-gradient(rgba(13, 17, 23, 0.35), rgba(13, 17, 23, 0.25)), 
                         url('background%20dasboard.png');
       background-size: 100% 100%; 
@@ -25,16 +25,16 @@
       overflow: hidden; 
     }
 
-    /* Header Navbar Semi-Transparan dengan Judul Tepat di Tengah */
+    /* Header Navbar Semi-Transparan */
     header {
       background-color: rgba(22, 27, 34, 0.6) !important;
       backdrop-filter: blur(4px);
       padding: 12px 24px;
       display: flex;
-      justify-content: center; /* Memaksa isi header di tengah-tengah secara horizontal */
+      justify-content: center;
       align-items: center;
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      position: relative; /* Penting untuk acuan tombol absolute */
+      position: relative;
       z-index: 10;
       min-height: 50px;
     }
@@ -50,10 +50,9 @@
       letter-spacing: 0.5px;
     }
 
-    /* Tombol Kembali Ditarik ke Ujung Kiri Tanpa Mengganggu Posisi Judul di Tengah */
     .back-btn {
       display: none;
-      position: absolute; /* Mengunci posisi tombol di sebelah kiri */
+      position: absolute;
       left: 24px;
       background: #238636;
       color: white;
@@ -66,7 +65,7 @@
     }
     .back-btn:hover { background: #2ea043; }
 
-    /* Container Portal Utama (Flexbox untuk menengahkan menu) */
+    /* Container Portal Utama: Posisi dinaikkan ke atas agar elegan */
     .portal-home {
       background: transparent !important;
       height: calc(100vh - 50px);
@@ -74,10 +73,13 @@
       
       display: flex;
       flex-direction: column;
-      justify-content: center; 
-      align-items: center;     
+      justify-content: flex-start; /* Mengatur urutan dari atas */
+      align-items: center;        /* Tetap rata tengah secara horizontal */
       
-      padding: 20px;
+      padding-top: 60px; /* Jarak dari bawah header (bisa disesuaikan 50px - 80px) */
+      padding-left: 20px;
+      padding-right: 20px;
+      padding-bottom: 20px;
       box-sizing: border-box;
       overflow-y: auto;
     }
