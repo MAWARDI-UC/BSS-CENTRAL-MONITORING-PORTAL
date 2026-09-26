@@ -6,21 +6,112 @@
   <title>BSS Central Monitoring Portal</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-    body {/* Lapisan gelap diturunkan ke 0.35 dan 0.25 agar GAMBAR JAUH LEBIH CERAH */
-  background-image: linear-gradient(rgba(13, 17, 23, 0.35), rgba(13, 17, 23, 0.25)), 
+    body {box-sizing: border-box; 
+  margin: 0; 
+  padding: 0; 
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+}
+
+body { 
+  /* Gambar dipasang penuh di body */
+  background-image: linear-gradient(rgba(13, 17, 23, 0.25), rgba(13, 17, 23, 0.25)), 
                     url('background%20dasboard.png');
-  
-  /* Agar gambar menyesuaikan penuh tanpa terpotong & tidak berulang */
   background-size: 100% 100%; 
-  background-position: center center;
+  background-position: top center;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  
   color: #c9d1d9; 
   height: 100vh; 
-  margin: 0;
   overflow: hidden; 
 }
+
+/* Header dibuat transparan / gelap tipis agar logo di atas gambar tidak tertutup */
+header {
+  background-color: rgba(22, 27, 34, 0.6) !important; /* Dibuat semi-transparan */
+  backdrop-filter: blur(4px); /* Efek blur halus di belakang header */
+  padding: 12px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+  z-index: 10;
+}
+
+.brand-title { 
+  font-size: 18px; 
+  font-weight: bold; 
+  color: #f0f6fc; 
+  display: flex; 
+  align-items: center; 
+  gap: 10px; 
+}
+
+.back-btn {
+  display: none;
+  background: #238636;
+  color: white;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+}
+.back-btn:hover { background: #2ea043; }
+
+/* Container Portal Transparan */
+.portal-home {
+  background: transparent !important;
+  padding: 20px 40px 40px 40px;
+  height: calc(100vh - 50px);
+  overflow-y: auto;
+}
+
+.portal-title { margin-bottom: 8px; color: #f0f6fc; text-shadow: 0 2px 4px rgba(0,0,0,0.8); }
+.portal-subtitle { color: #d0d7de; margin-bottom: 25px; text-shadow: 0 1px 3px rgba(0,0,0,0.8); }
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+/* Kartu Dashboard dengan efek Glassmorphism (Kaca Transparan) */
+.card {
+  background: rgba(22, 27, 34, 0.75) !important; /* Transparan elegan */
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  padding: 20px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+.card:hover {
+  border-color: #58a6ff;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.5);
+  background: rgba(22, 27, 34, 0.88) !important;
+}
+.card h3 { color: #58a6ff; margin-bottom: 10px; }
+.card p { color: #c9d1d9; font-size: 14px; line-height: 1.4; margin-bottom: 15px; }
+.card .badge {
+  display: inline-block;
+  padding: 4px 8px;
+  background: rgba(33, 38, 45, 0.8);
+  color: #7ee787;
+  font-size: 12px;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+/* Container iFrame ketika Dashboard Dibuka */
+.iframe-wrapper {
+  width: 100%;
+  height: calc(100vh - 50px);
+  display: none;
+  background: #0d1117;
+}
+iframe { width: 100%; height: 100%; border: none; }
 
 /* Pastikan container portal transparan agar background body terlihat penuh */
 .portal-home {
